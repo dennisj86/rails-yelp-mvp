@@ -9,7 +9,6 @@ puts "cleaning"
 Restaurant.destroy_all
 
 puts "creating"
-i = 1
 10.times do
   restaurant = Restaurant.create(
     name: Faker::Restaurant.name,
@@ -19,13 +18,11 @@ i = 1
   )
   puts "Restaurant #{restaurant.name} created!"
   3.times do
-   review = Review.create(
+  review = Review.create(
       rating: [1, 2, 3, 4, 5].sample,
       content: Faker::Restaurant.review,
-      restaurant_id: i
+      restaurant_id: restaurant.id
     )
     puts "#{review.restaurant_id}"
   end
-  i += 1
-  puts i
 end
